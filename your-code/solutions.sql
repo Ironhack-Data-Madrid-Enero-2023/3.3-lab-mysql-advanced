@@ -22,7 +22,7 @@ SUM(titles.price * sales.qty * (titles.royalty / 100) * (titleauthor.royaltyper 
 QUERY 1.3.
 
 SELECT titleauthor.au_id,
-SUM(titles.price * sales.qty * (titles.royalty / 100) * (titleauthor.royaltyper / 100) + titles.advance) as profits
+SUM(titles.price * sales.qty * (titles.royalty / 100) * (titleauthor.royaltyper / 100)) + titles.advance as profits
 	FROM titleauthor
 	LEFT JOIN titles
 		ON titleauthor.title_id = titles.title_id
@@ -36,7 +36,7 @@ QUERY 2
 
 CREATE TEMPORARY TABLE publications.top_3_profits
 SELECT titleauthor.au_id,
-SUM(titles.price * sales.qty * (titles.royalty / 100) * (titleauthor.royaltyper / 100) + titles.advance) as profits
+SUM(titles.price * sales.qty * (titles.royalty / 100) * (titleauthor.royaltyper / 100)) + titles.advance as profits
 	FROM titleauthor
 	LEFT JOIN titles
 		ON titleauthor.title_id = titles.title_id
@@ -50,7 +50,7 @@ QUERY 3
 
 CREATE TABLE most_profiting_authors
 SELECT titleauthor.au_id,
-SUM(titles.price * sales.qty * (titles.royalty / 100) * (titleauthor.royaltyper / 100) + titles.advance) as profits
+SUM(titles.price * sales.qty * (titles.royalty / 100) * (titleauthor.royaltyper / 100)) + titles.advance as profits
 	FROM titleauthor
 	LEFT JOIN titles
 		ON titleauthor.title_id = titles.title_id
