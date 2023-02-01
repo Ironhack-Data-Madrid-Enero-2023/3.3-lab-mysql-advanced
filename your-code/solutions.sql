@@ -90,7 +90,7 @@ AS
        au.au_id as 'Author ID', 
        (t.price * s.qty * t.royalty / 100 * ta.royaltyper / 100) as sales_royalty
 
-FROM titles as t
+FROM step11 as s1
 
 LEFT JOIN titleauthor as ta
 ON ta.title_id = t.title_id
@@ -98,6 +98,8 @@ LEFT JOIN authors as au
 ON au.au_id = ta.au_id
 LEFT JOIN sales as s
 ON s.title_id = t.title_id
+
+GROUP BY au.au_id, t.title_id
 );
 
 
@@ -110,10 +112,10 @@ AS
        'Author ID', 
        sales_royalty + t.advance  as sales_royalty_plus_advance
 
-FROM step11 as s1
+FROM step2 as s2
 
 LEFT JOIN titles as t
-ON t.title_id = s1.`Title ID`)
+ON t.title_id = s2.`Title ID`)
 ;
 
 
